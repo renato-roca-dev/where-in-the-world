@@ -1,5 +1,5 @@
 document.getElementById("btn-back").addEventListener("click", function(){
-    location.href = "/index.html"
+    window.location.href = "https://renato-roca-dev.github.io/where-in-the-world/"
 })
 
 window.addEventListener("hashchange", function(){
@@ -128,8 +128,9 @@ if(localStorage.getItem("darkMode") === "true"){
     document.getElementById("btn-back").classList.toggle("dark-mode-element");
 }
 
+
 window.addEventListener("hashchange", function(){
     if(this.location.hash == "#Don't%20Have" || this.location.hash == "#"){
-        this.location.href = "/index.html"
+        window.location.href = "https://renato-roca-dev.github.io/where-in-the-world/"
     }
 })
