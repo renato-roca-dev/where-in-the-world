@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f8f47e19bd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/imgs/icon.png">
+    <title>Where in the world?</title>
+</head>
+<body>
+    <header>
+        <div id="header-div"  class="wrapper flex">
+            <a href="#" id="header-logo">Where in the world?</a>
+            <div id="dark-mode-btn">
+                <label for="dark-mode" id="label-darkmode"><i class="fa-solid fa-moon"></i> Dark Mode</label>
+                <input type="checkbox" id="dark-mode">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="main-div" class="wrapper">
+            <form class="flex">
+                <div id="input-search">
+                    <label for="search-input"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    <input type="text" id="search-input" placeholder="Search for a country..." onkeyup="filterCountry()">
+                </div>
+                <div id="input-filter">
+                    <select id="input-select">
+                        <option value="null" selected>Filter by Region</option>
+                        <option value="Africa" >África</option>
+                        <option value="Americas">America</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </div>
+            </form>
+            <div id="country-list" class="flex">
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
