@@ -37,20 +37,22 @@ function filterCountry(){
     }
 }
 
-const newCountryHome = (alpha3Code, name, population, region, capital, flags, png) => {
+const newCountryHome = (alpha3Code, name, population, region, capital, flags) => {
     const newAnchor = document.createElement("a");
     newAnchor.setAttribute("href", `assets/pages/detail.html#${alpha3Code}`)
     newAnchor.className = "country-anchor"
     const divBox = `
-        <div class="country">
+        <div class="country" title="${name}">
             <div class="country-image">
                 <img src="${flags.png}">
             </div>
             <div class="country-text">
                 <h2 class="country-name">${name}</h2>
-                <p class="country-population"><span class="country-span">Population:</span> ${population}</p>
-                <p class="country-region"><span class="country-span">Region:</span> ${region}</p>
-                <p class="country-capital"><span class="country-span">Capital:</span> ${capital}</p>
+                <div class="country-infos">
+                    <p class="country-population"><span class="country-span">Population:</span> ${population.toLocaleString()}</p>
+                    <p class="country-region"><span class="country-span">Region:</span> ${region}</p>
+                    <p class="country-capital"><span class="country-span">Capital:</span> ${capital}</p>
+                </div>
             </div>
         </div>`;
         newAnchor.innerHTML = divBox;
@@ -69,7 +71,7 @@ http.onload = () => {
     const data = JSON.parse(http.response);
     data.forEach(country => {
         if(country.capital === undefined){
-            country.capital = "Don't Have"
+            country.capital = "None"
         }
         countryList.appendChild(newCountryHome(country.alpha3Code, country.name, country.population, country.region, country.capital, country.flags, country.png))
     });
@@ -105,6 +107,11 @@ http.onload = () => {
         }
     }
 }
+
+http.addEventListener("loadend", function(){
+    document.getElementById("loading").remove()
+})
+
 if(localStorage.getItem("darkMode") === "true"){
     document.getElementById("dark-mode").checked = true;
     document.getElementsByTagName("header")[0].classList.toggle("dark-mode-element");

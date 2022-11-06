@@ -12,6 +12,10 @@ a{
     text-decoration: none;
     color: inherit;
 }
+a:hover h2{
+    cursor: pointer;
+    text-decoration: underline;
+}
 .wrapper{
     margin: 0 auto;
     width: 90%;
@@ -25,7 +29,7 @@ header{
     background-color: white;
 }
 #header-div{
-    padding: 32px 0;
+    padding: 26px 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -39,7 +43,10 @@ header{
     background-color: transparent;
     border: none;
     outline: none;
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
     font-size: 16px;
     font-weight: 600;
     color: inherit;
@@ -54,6 +61,7 @@ main{
     padding: 32px 0;
     min-height: 100vh;
     background-color: hsl(0, 0%, 98%);
+    box-shadow: 0px 0px 6px 0px #0000001f;
 }
 form{
     flex-direction: row;
@@ -102,9 +110,8 @@ form{
 }
 .country{
     background-color: white;
-    border-radius: 6px;
+    border-radius: 8px;
     width: 300px;
-    min-height: 400px;
     height: fit-content;
     box-shadow: 0px 0px 6px 0px #0000001f;
 }
@@ -116,15 +123,25 @@ form{
     width: 100%;
     height: 200px;
     object-fit: fill;
+    border-radius: 8px 8px 0px 0px;
 }
 .country-text{
-    padding: 20px;
+    padding: 25px 25px 35px 25px;
+}
+.country-span{
+    font-weight: 600;
 }
 .country-name{
     margin-bottom: 10px;
+    height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.country-span{
-    font-weight: 800;
+.country-infos{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 .dark-mode-bg{
     background-color: hsl(207, 26%, 17%) !important;
@@ -134,6 +151,12 @@ form{
 }
 .dark-mode-texts{
     color: hsl(0, 0%, 100%) !important;
+}
+#loading{
+    font-size: 2em;
+    padding: 32px 0;
+    margin: 0 auto;
+    width: fit-content;
 }
 @media screen and (max-width: 768px){
     #header-div h1 {

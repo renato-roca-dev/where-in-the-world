@@ -22,7 +22,7 @@ http.onload = () => {
             }
             var currenciesName = new Array;
             if(data[i].currencies == undefined){
-                var dontHave = "Don't Have";
+                var dontHave = "None";
                 currenciesName.push(dontHave)
             } else{
                 for(y = 0; y < data[i].currencies.length; y++){
@@ -31,15 +31,13 @@ http.onload = () => {
             }
             var capitalName = new Array;
             if(data[i].capital == undefined){
-                var dontHave = "Don't Have";
+                var dontHave = "None";
                 capitalName.push(dontHave)
             } else{
                 capitalName.push(data[i].capital)
             }
-            var borderOne = new Array;
-            var borderTwo = new Array;
-            var borderThree = new Array;
-            var dontHave = "Don't Have";
+            var borderOne = new Array, borderTwo = new Array, borderThree = new Array;
+            var dontHave = "None";
             if(data[i].borders == undefined){
                 borderOne.push(dontHave)
                 borderTwo.push(dontHave)
@@ -70,7 +68,7 @@ http.onload = () => {
                 <div id="country-texts" class="flex">
                     <div id="country-info-main">
                         <p id="country-native-name"><span class="country-span">Native Name:</span> ${data[i].nativeName}</p>
-                        <p id="country-population"><span class="country-span">Population:</span> ${data[i].population}</p>
+                        <p id="country-population"><span class="country-span">Population:</span> ${data[i].population.toLocaleString()}</p>
                         <p id="country-region"><span class="country-span">Region:</span> ${data[i].region}</p>
                         <p id="country-sub-region"><span class="country-span">Sub Region:</span> ${data[i].subregion}</p>
                         <p id="country-capital"><span class="country-span">Capital:</span> ${capitalName}</p>
@@ -83,9 +81,11 @@ http.onload = () => {
                 </div>
                 <div id="country-borders" class="flex">
                     <span class="country-span">Border Countries: </span>
-                    <a href="#${borderOne}" class="border-country-anchor">${borderOne}</a>
-                    <a href="#${borderTwo}" class="border-country-anchor">${borderTwo}</a>
-                    <a href="#${borderThree}" class="border-country-anchor">${borderThree}</a>
+                    <div class="anchor-borders">
+                    ${borderOne[0] != "None" && `<a href="#${borderOne}" class="border-country-anchor">${borderOne}</a>` || borderOne[0] === "None" && "None"}
+                    ${borderTwo[0] != "None" && `<a href="#${borderTwo}" class="border-country-anchor">${borderTwo}</a>` || borderTwo[0] === "None" && ""}
+                    ${borderThree[0] != "None" && `<a href="#${borderThree}" class="border-country-anchor">${borderThree}</a>` || borderThree[0] === "None" && ""}
+                    </div>
                 </div>
             </div>`
         } 
@@ -120,6 +120,11 @@ http.onload = () => {
         }
     }
 }
+
+http.addEventListener("loadend", function(){
+    document.getElementById("loading").remove();
+})
+
 if(localStorage.getItem("darkMode") === "true"){
     document.getElementById("dark-mode").checked = true;
     document.getElementsByTagName("header")[0].classList.toggle("dark-mode-element");
@@ -128,9 +133,8 @@ if(localStorage.getItem("darkMode") === "true"){
     document.getElementById("btn-back").classList.toggle("dark-mode-element");
 }
 
-
 window.addEventListener("hashchange", function(){
-    if(this.location.hash == "#Don't%20Have" || this.location.hash == "#"){
+    if(this.location.hash == "#None" || this.location.hash == "#"){
         window.location.href = "https://renato-roca-dev.github.io/where-in-the-world/"
     }
 })
